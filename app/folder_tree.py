@@ -4,12 +4,12 @@ from pathlib import Path
 
 
 @dataclass
-class Node:
+class FolderNode:
     name: str
     path: Path
-    parent: Node | None = None
-    children: list[Node] = field(default_factory=list)
+    parent: FolderNode | None = None
+    children: list[FolderNode] = field(default_factory=list)
     
 @dataclass
-class Tree:
-    root: Node
+class FolderTree:
+    root: FolderNode

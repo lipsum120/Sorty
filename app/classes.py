@@ -17,7 +17,7 @@ class FileType(StrEnum):
     OTHERS = "Others"
 
 @dataclass
-class File:
+class TrackedFile:
     path: Path = Path("")
     last_event_time: float = 0
     last_size: int = 0
@@ -45,12 +45,12 @@ class File:
 
 @dataclass
 class FileTracker:
-    tracked_files: dict[Path, File] = field(default_factory=dict)
+    tracked_files: dict[Path, TrackedFile] = field(default_factory=dict)
 
-    def get_file(self, path: Path) -> File | None:
+    def get_file(self, path: Path) -> TrackedFile | None:
         return self.tracked_files.get(path)
 
-    def add_file(self, file: File) -> None:
+    def add_file(self, file: TrackedFile) -> None:
         self.tracked_files[file.path] = file
 
     def remove_file(self, path: Path) -> None:
